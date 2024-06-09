@@ -1,7 +1,7 @@
 # Multi_Omics_Integration
 
 ## Project Description
-This project involves developing a machine learning model to classify protein sequences. By leveraging a recurrent neural network (RNN) with Long Short-Term Memory (LSTM) units, the model can effectively capture patterns in protein sequences to classify them into functional categories. This project demonstrates expertise in sequence analysis, which is crucial for understanding protein functions and interactions in biological research.
+This project develops a comprehensive machine learning framework to integrate and analyze multi-omics data, combining genomics, transcriptomics, and proteomics datasets. By employing a combination of unsupervised learning techniques such as clustering and dimensionality reduction, the framework identifies patterns and correlations across different omics layers, providing insights into complex biological processes and disease mechanisms. This project showcases proficiency in handling large-scale, high-dimensional biological datasets.
 
 ## Installation
 1. Clone the repository:
