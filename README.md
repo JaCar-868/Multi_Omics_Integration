@@ -1,40 +1,70 @@
-# Multi-Omics Data Integration and Analysis Project
+# Multi-Omics Integration Project
 
-## Project Description
-This project develops a machine learning framework to integrate and analyze multi-omics data, including genomics, transcriptomics, and proteomics. By employing unsupervised learning techniques such as clustering and dimensionality reduction, the framework identifies patterns and correlations across different omics layers, providing insights into complex biological processes and disease mechanisms.
+This repository contains the code for integrating multi-omics data using PCA and clustering the integrated data.
 
-## Installation
-1. Clone the repository:
-   
-   git clone https://github.com/your_username/multi-omics-integration.git
+## Project Structure
 
-2. Navigate to the project directory:
+- `multi_omics_integration.py`: The main script that loads, preprocesses, integrates, and clusters the multi-omics data.
 
-   cd multi-omics-integration
-   
-3. Install required packages:
+## Requirements
 
-   pip install -r requirements.txt
+To run this project, you need to have the following dependencies installed:
+
+- Python 3.x
+- NumPy
+- Pandas
+- Scikit-learn
+- Matplotlib
+- Seaborn
+
+You can install the required Python packages using:
+
+pip install numpy pandas scikit-learn matplotlib seaborn
+
+## Dataset
+The dataset should be CSV files representing different omics data (e.g., genomics, transcriptomics, proteomics). Update the file paths in the script accordingly.
 
 ## Usage
-1. Load data:
-Place your omics data in the data/ directory.
+1. Load Data:
 
-2. Preprocess data:
+The load_data function loads the CSV files into Pandas DataFrames.
 
-python preprocess_data.py
+file_paths = ['path/to/genomics.csv', 'path/to/transcriptomics.csv', 'path/to/proteomics.csv']
+data = load_data(file_paths)
 
-3. Integrate data:
+2. Preprocess Data:
 
-python integrate_data.py
+The data is standardized using StandardScaler.
 
-4. Analyze and visualize results:
+preprocessed_data = preprocess_data(data)
 
-python analyze_data.py
+3. Integrate Data:
+
+The data is integrated using PCA(Principal Component Analysis).
+
+integrated_data = integrate_data(preprocessed_data)
+
+4. Cluster Data:
+
+The integrated data is clustered using KMeans.
+
+clusters = cluster_data(integrated_data)
+
+5. Visualize Clusters:
+
+The clustering results are visualized using Seaborn.
+
+visualize_clusters(integrated_data, clusters)
+
+6. Save Results:
+
+The integrated data and clusters are saved as NumPy files.
+
+np.save('integrated_multi_omics_data.npy', integrated_data)
+np.save('multi_omics_clusters.npy', clusters)
 
 ## Contributing
-
-Please open an issue or submit a pull request for any contributions.
+If you have any suggestions or improvements, feel free to open an issue or create a pull request.
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the MIT License - see the LICENSE file for details.
