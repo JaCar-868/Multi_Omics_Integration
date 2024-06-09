@@ -14,7 +14,7 @@ This project develops a machine learning framework to integrate and analyze mult
    
 3. Install required packages:
 
-pip install -r requirements.txt
+   pip install -r requirements.txt
 
 ## Usage
 1. Load data:
