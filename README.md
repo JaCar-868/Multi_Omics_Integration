@@ -67,4 +67,4 @@ np.save('multi_omics_clusters.npy', clusters)
 If you have any suggestions or improvements, feel free to open an issue or create a pull request.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/JaCar-868/Disease-Progression/blob/main/LICENSE) file for details.
