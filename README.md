@@ -1,70 +1,102 @@
-# Multi-Omics Integration Project
+Multi-Omics Integration Project
 
-This repository contains the code for integrating multi-omics data using PCA and clustering the integrated data.
+This repository provides a configurable pipeline for integrating multi-omics data (e.g., genomics, transcriptomics, proteomics) using PCA for dimensionality reduction and KMeans for clustering, with interactive Plotly visualizations and robust preprocessing.
 
-## Project Structure
+Project Structure
 
-- `multi_omics_integration.py`: The main script that loads, preprocesses, integrates, and clusters the multi-omics data.
+multi_omics_integration.py: Main Python script with a command-line interface.
 
-## Requirements
+data/ (optional): Folder for organizing input CSV files, each with samples as rows and features as columns.
 
-To run this project, you need to have the following dependencies installed:
+results/ (optional): Directory for storing generated embeddings, labels, and plots.
 
-- Python 3.x
-- NumPy
-- Pandas
-- Scikit-learn
-- Matplotlib
-- Seaborn
+README.md: Project documentation.
 
-You can install the required Python packages using:
+Requirements
 
-pip install numpy pandas scikit-learn matplotlib seaborn
+Python 3.7+
 
-## Dataset
-The dataset should be CSV files representing different omics data (e.g., genomics, transcriptomics, proteomics). Update the file paths in the script accordingly.
+numpy
 
-## Usage
-1. Load Data:
+pandas
 
-The load_data function loads the CSV files into Pandas DataFrames.
+scikit-learn
 
-file_paths = ['path/to/genomics.csv', 'path/to/transcriptomics.csv', 'path/to/proteomics.csv']
-data = load_data(file_paths)
+plotly
 
-2. Preprocess Data:
+kaleido (for static image export)
 
-The data is standardized using StandardScaler.
+Install dependencies via:
 
-preprocessed_data = preprocess_data(data)
+pip install numpy pandas scikit-learn plotly kaleido
 
-3. Integrate Data:
+Data Format
 
-The data is integrated using PCA(Principal Component Analysis).
+Each CSV file represents one omics layer and must share the same sample identifiers (row indices):
 
-integrated_data = integrate_data(preprocessed_data)
+# rows = sample IDs, columns = features
+sample_id,feature1,feature2,...
+sampleA,0.5,1.2,...
+sampleB,0.3,0.8,...
 
-4. Cluster Data:
+All files passed to the script will be aligned on their common samples before integration.
 
-The integrated data is clustered using KMeans.
+Usage
 
-clusters = cluster_data(integrated_data)
+python multi_omics_integration.py \
+  path/to/genomics.csv \
+  path/to/transcriptomics.csv \
+  path/to/proteomics.csv \
+  --components 50 \
+  --clusters 3 \
+  --variance_thresh 0.0 \
+  --out_prefix results/multi_omics
 
-5. Visualize Clusters:
+Key Arguments
 
-The clustering results are visualized using Seaborn.
+files (positional): List of input CSV file paths.
 
-visualize_clusters(integrated_data, clusters)
+--components: Number of PCA components (default: 50).
 
-6. Save Results:
+--clusters: Number of clusters for KMeans (default: 3).
 
-The integrated data and clusters are saved as NumPy files.
+--variance_thresh: Variance threshold for filtering low-variance features (default: 0.0).
 
-np.save('integrated_multi_omics_data.npy', integrated_data)
-np.save('multi_omics_clusters.npy', clusters)
+--out_prefix: Prefix for naming output files (default: multi_omics).
 
-## Contributing
-If you have any suggestions or improvements, feel free to open an issue or create a pull request.
+Produced Outputs
+
+<out_prefix>_embedding.npy: NumPy array of shape (n_samples, n_components) containing PCA embeddings.
+
+<out_prefix>_labels.npy: NumPy array of cluster labels (length = n_samples).
+
+<out_prefix>_clusters.html: Interactive Plotly dashboard for exploring cluster assignments.
+
+<out_prefix>_clusters.png: Static image export (requires Kaleido/Orca).
+
+Logging
+
+The script uses Python's built-in logging module to report:
+
+File loading summaries and shapes.
+
+Number of features retained after variance filtering.
+
+Explained variance ratio per PCA component and cumulative summary.
+
+Silhouette score for clustering quality.
+
+Advanced Customization
+
+Reproducibility: Modify random_state parameters in PCA and KMeans for consistent results.
+
+Alternative embeddings: Swap PCA for UMAP or t-SNE in integrate_data.
+
+Hyperparameter tuning: Wrap pipeline in GridSearchCV to optimize n_components, n_clusters, and variance_thresh.
+
+Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request with improvements or bug fixes.
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/JaCar-868/Disease-Progression/blob/main/LICENSE) file for details.
