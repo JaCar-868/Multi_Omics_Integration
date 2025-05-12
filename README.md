@@ -90,9 +90,9 @@ Silhouette score for clustering quality.
 
 Reproducibility: Modify random_state parameters in PCA and KMeans for consistent results.
 
-##A lternative embeddings: Swap PCA for UMAP or t-SNE in integrate_data.
+Alternative embeddings: Swap PCA for UMAP or t-SNE in integrate_data.
 
-##Hyperparameter tuning: Wrap pipeline in GridSearchCV to optimize n_components, n_clusters, and variance_thresh.
+Hyperparameter tuning: Wrap pipeline in GridSearchCV to optimize n_components, n_clusters, and variance_thresh.
 
 ## Contributing
 
