@@ -1,8 +1,8 @@
-Multi-Omics Integration Project
+##Multi-Omics Integration Project
 
 This repository provides a configurable pipeline for integrating multi-omics data (e.g., genomics, transcriptomics, proteomics) using PCA for dimensionality reduction and KMeans for clustering, with interactive Plotly visualizations and robust preprocessing.
 
-Project Structure
+##Project Structure
 
 multi_omics_integration.py: Main Python script with a command-line interface.
 
@@ -12,7 +12,7 @@ results/ (optional): Directory for storing generated embeddings, labels, and plo
 
 README.md: Project documentation.
 
-Requirements
+##Requirements
 
 Python 3.7+
 
@@ -26,11 +26,11 @@ plotly
 
 kaleido (for static image export)
 
-Install dependencies via:
+##Install dependencies via:
 
 pip install numpy pandas scikit-learn plotly kaleido
 
-Data Format
+##Data Format
 
 Each CSV file represents one omics layer and must share the same sample identifiers (row indices):
 
@@ -41,7 +41,7 @@ sampleB,0.3,0.8,...
 
 All files passed to the script will be aligned on their common samples before integration.
 
-Usage
+##Usage
 
 python multi_omics_integration.py \
   path/to/genomics.csv \
@@ -52,7 +52,7 @@ python multi_omics_integration.py \
   --variance_thresh 0.0 \
   --out_prefix results/multi_omics
 
-Key Arguments
+##Key Arguments
 
 files (positional): List of input CSV file paths.
 
@@ -64,7 +64,7 @@ files (positional): List of input CSV file paths.
 
 --out_prefix: Prefix for naming output files (default: multi_omics).
 
-Produced Outputs
+##Produced Outputs
 
 <out_prefix>_embedding.npy: NumPy array of shape (n_samples, n_components) containing PCA embeddings.
 
@@ -74,7 +74,7 @@ Produced Outputs
 
 <out_prefix>_clusters.png: Static image export (requires Kaleido/Orca).
 
-Logging
+##Logging
 
 The script uses Python's built-in logging module to report:
 
@@ -86,15 +86,15 @@ Explained variance ratio per PCA component and cumulative summary.
 
 Silhouette score for clustering quality.
 
-Advanced Customization
+##Advanced Customization
 
 Reproducibility: Modify random_state parameters in PCA and KMeans for consistent results.
 
-Alternative embeddings: Swap PCA for UMAP or t-SNE in integrate_data.
+##Alternative embeddings: Swap PCA for UMAP or t-SNE in integrate_data.
 
-Hyperparameter tuning: Wrap pipeline in GridSearchCV to optimize n_components, n_clusters, and variance_thresh.
+##Hyperparameter tuning: Wrap pipeline in GridSearchCV to optimize n_components, n_clusters, and variance_thresh.
 
-Contributing
+##Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request with improvements or bug fixes.
 
