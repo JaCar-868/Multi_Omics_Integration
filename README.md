@@ -34,14 +34,14 @@ pip install numpy pandas scikit-learn plotly kaleido
 
 Each CSV file represents one omics layer and must share the same sample identifiers (row indices):
 
-# rows = sample IDs, columns = features
+rows = sample IDs, columns = features
 sample_id,feature1,feature2,...
 sampleA,0.5,1.2,...
 sampleB,0.3,0.8,...
 
 All files passed to the script will be aligned on their common samples before integration.
 
-##Usage
+## Usage
 
 python multi_omics_integration.py \
   path/to/genomics.csv \
